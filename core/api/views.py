@@ -13,3 +13,10 @@ def getTask(request):
     serializers = TaskSerializers(tasks, many=True)
     return Response(serializers.data)
 
+@api_view(['POST'])
+def postTask(request):
+    serializers = TaskSerializers(data=request.data)
+    print(request.data)
+    if serializers.is_valid():
+        serializers.save()
+        return Response(serializers.data)
