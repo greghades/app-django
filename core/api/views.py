@@ -15,8 +15,24 @@ def getTask(request):
 
 @api_view(['POST'])
 def postTask(request):
+    
     serializers = TaskSerializers(data=request.data)
-    print(request.data)
     if serializers.is_valid():
         serializers.save()
         return Response(serializers.data)
+    return Response(serializers.errors)
+
+@api_view(['PUT'])
+def putTask(request,pkUser):
+    user = Task_Model.objects.filter(id = pkUser).first()
+    serializers = TaskSerializers(user,data=request.data)
+    if serializers.is_valid():
+        serializers.save()
+        return Response(serializers.data)
+    return Response(serializers.errors)
+
+@api_view(['DELETE'])
+def deleteTask(request,pkUser):
+    user = Task_Model.objects.filter(id = pkUser).first()
+    user.delete()
+    return Response('Usuario eliminado con exito')
