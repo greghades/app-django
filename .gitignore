@@ -216,3 +216,5 @@ $RECYCLE.BIN/
 .gitignore
 
 core/db.sqlite3
+.vscode
+.gitignore
