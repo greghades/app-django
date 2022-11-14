@@ -13,7 +13,7 @@ class Task_Model(models.Model):
     title=models.CharField(max_length=20, null=False)
     description=models.TextField(max_length=100, null=True, blank=True)
     date_limited=models.DateField()
-    asignado_a= models.ForeignKey(User,on_delete=models.CASCADE)
+    asignado_a= models.CharField(max_length=50,null=True)
     prioridad=models.ForeignKey(Priority, on_delete= models.DO_NOTHING)
 
     def __str__(self):
